@@ -23,6 +23,7 @@ input[type="submit"], button[type="submit"] {
 .user-menu, .header-right ul.list-inline {
   text-align: center;
 }
+
 .mainmenu-area ul.navbar-nav li a {
   font-size: 14px;
   padding: 15px 10px;

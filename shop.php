@@ -163,9 +163,9 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
                         <div class="product-upper">
-                            <img src=<?php echo $row['image']?> alt="">
+                            <img class= "size" src=<?php echo $row['image']?> alt="">
                         </div>
-                        <h2><a href=""><?php echo $row['name'] ?></a></h2>
+                        <h2 ><a href=""><?php echo $row['name'] ?></a></h2>
                         <div class="product-carousel-price">
                             <ins><?php echo $row['price']?></ins> <del><?php echo $row['price2']?></del>
                         </div>  
