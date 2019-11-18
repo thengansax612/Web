@@ -1,5 +1,8 @@
 <?php 
    include("./connect.php");
+   $productrang = 12;
+   $trang = $_GET["trang"];
+  
 ?>
 
 <!DOCTYPE html>
@@ -146,10 +149,9 @@
             <div class="row">
                 
                 <?php 
-                   
-                    $sqlSelect = "SELECT * FROM product" ;
+                    $index = ($trang-1)* $productrang;
+                    $sqlSelect = "SELECT * FROM sanpham LIMIT $index ,$productrang" ;
                     $result = mysqli_query($conn,$sqlSelect);
-                    
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)){
                            
@@ -169,7 +171,7 @@
                         </div>  
                         
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                            <a data-item="<?php echo json_encode($row) ?>" class="add_to_cart_button" data-quantity="1" data-product_sku="" rel="nofollow" href="single-product.php?link=single-product & id= <?php echo $row['id']?> ">Add to cart</a>
                         </div>                       
                     </div>
                 </div>
@@ -191,11 +193,15 @@
                                 <span aria-hidden="true">&laquo;</span>
                               </a>
                             </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            <?php
+                            $coc = mysqli_query($conn,"SELECT * FROM sanpham") ;
+                            $tongproduct = mysqli_num_rows($coc);
+                            $sotrang = ceil($tongproduct/$productrang);
+                             for($i = 1 ; $i <= $sotrang ; ++$i ){
+
+                            ?>
+                            <li><a href="shop.php? trang=<?php echo $i?>  "><?php echo $i?></a></li>
+                            <?php } ?>
                             <li>
                               <a href="#" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
